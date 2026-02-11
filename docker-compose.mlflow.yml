@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # MLflow Tracking Server
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:v2.9.0
+    container_name: mlflow-server
+    ports:
+      - "5000:5000"
+    environment:
+      - MLFLOW_TRACKING_URI=http://localhost:5000
+    command:
+      - server
+      - --backend-store-uri
+      - sqlite:///mlflow/mlflow.db
+      - --default-artifact-root
+      - /mlflow/artifacts
+    volumes:
+      - mlflow_artifacts:/mlflow/artifacts
+      - mlflow_db:/mlflow
+    restart: unless-stopped
+
+  # 模型服务
+  model:
+    build:
+      context: .
+      dockerfile: Dockerfile.mlflow
+    container_name: iris-model
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mlflow
+    environment:
+      - MLFLOW_TRACKING_URI=http://mlflow:5000
+    restart: unless-stopped
+
+volumes:
+  mlflow_artifacts:
+  mlflow_db:

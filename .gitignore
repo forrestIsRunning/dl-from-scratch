@@ -25,6 +25,5 @@ data/input.txt
 data/*.txt
 logs/
 
-# MLflow
+# MLflow（只忽略运行目录）
 mlruns/
-*.mlflow

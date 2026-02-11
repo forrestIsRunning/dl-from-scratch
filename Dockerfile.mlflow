@@ -1,0 +1,21 @@
+# MLflow 示例 Dockerfile
+FROM python:3.10-slim
+
+WORKDIR /app
+
+# 安装依赖
+COPY mlflow-requirements.txt .
+RUN pip install --no-cache-dir -r mlflow-requirements.txt
+
+# 复制代码
+COPY mlflow_tracking_example.py .
+
+# 暴露端口
+EXPOSE 8080
+
+# 健康检查
+HEALTHCHECK --interval=30s --timeout=3s \
+  CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8080/health')" || exit 1
+
+# 启动命令
+CMD ["python", "mlflow_tracking_example.py", "serve"]
