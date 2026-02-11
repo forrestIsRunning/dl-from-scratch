@@ -1,0 +1,12 @@
+[project]
+name = "transformer-scratch"
+version = "0.1.0"
+description = "Transformer from scratch - 手写实现 GPT 风格的 Transformer 模型"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "torch>=2.0.0",
+    "numpy>=1.24.0",
+    "tqdm>=4.65.0",
+    "requests>=2.28.0",
+]
