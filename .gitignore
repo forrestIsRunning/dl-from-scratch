@@ -8,10 +8,6 @@ wheels/
 
 # Virtual environments
 .venv
-.venv/
-
-# uv
-uv.lock
 
 # IDE
 .idea/
@@ -19,11 +15,11 @@ uv.lock
 *.swp
 *.swo
 
-# Project specific
-checkpoints/
-data/input.txt
-data/*.txt
-logs/
+# Project specific - Transformer
+transformer/checkpoints/
+transformer/data/*.txt
+transformer/__pycache__/
+transformer/logs/
 
 # MLflow（只忽略运行目录）
 mlruns/
