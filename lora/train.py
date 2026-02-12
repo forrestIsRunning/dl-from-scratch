@@ -5,8 +5,8 @@ LLaMA LoRA 微调示例
 
 支持：LLaMA、LLaMA-2、LLaMA-3 等系列
 
-环境要求：
-    pip install transformers accelerate datasets peft
+注意：依赖已在根目录 pyproject.toml 中管理
+使用前先运行：uv sync
 """
 
 import os
