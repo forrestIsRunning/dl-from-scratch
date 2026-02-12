@@ -65,7 +65,12 @@ lora/
 ### 1. 安装依赖
 
 ```bash
-pip install transformers accelerate datasets peft
+# 方式 A: 安装所有依赖（推荐）
+cd /Users/Zhuanz/go/src/dl-from-scratch
+uv sync
+
+# 方式 B: 只安装 LoRA 相关依赖（可选）
+uv pip install "transformers[accelerate]" peft bitsandbytes
 ```
 
 ### 2. 训练 LoRA
