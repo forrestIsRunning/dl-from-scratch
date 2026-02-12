@@ -1,4 +1,4 @@
-# 深度学习模型从入门到精通
+# 深度学习从零实现
 
 > CNN、RNN/LSTM、Transformer 与 CUDA 编程的完整示例集合
 
@@ -13,7 +13,7 @@
 ## 目录
 
 ```
-ml-models-guide/
+dl-from-scratch/
 ├── docs/                           # 文档目录
 │   └── MODEL_COMPARISON.md       # 模型对比详解
 │

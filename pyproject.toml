@@ -1,7 +1,7 @@
 [project]
-name = "ml-models-guide"
+name = "dl-from-scratch"
 version = "0.1.0"
-description = "深度学习模型从入门到精通：CNN、RNN、Transformer 与 CUDA 编程"
+description = "深度学习从零实现：CNN、RNN、Transformer 与 CUDA 编程"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
