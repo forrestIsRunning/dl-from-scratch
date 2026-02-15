@@ -1,4 +1,4 @@
-# 🚀 深度学习从零实现
+# 深度学习从零实现
 
 > **CNN、RNN、Transformer、LoRA** 与 **CUDA 编程** 的完整示例集合
 
@@ -8,37 +8,52 @@
 
 ---
 
-## ✨ 特性
+## 特性
 
-- ✅ **从零实现**：完整代码，详细中文注释
-- 📚 **渐进学习**：CNN → RNN → Transformer → LoRA
-- 🚀 **CUDA 教程**：GPU 并行编程基础
-- 🛠️ **MLOps 流程**：实验跟踪、部署、监控
-- 📖 **示例驱动**：每个模型都可以直接运行
+- **从零实现**：完整代码，详细中文注释
+- **渐进学习**：逻辑回归 → 神经网络 → CNN → RNN → Transformer → LoRA
+- **CUDA 教程**：GPU 并行编程基础
+- **MLOps 流程**：实验跟踪、部署、监控
+- **示例驱动**：每个模型都可以直接运行
 
 ---
 
-## 📁 项目结构
+## 项目结构
 
 ```
 dl-from-scratch/
 ├── pyproject.toml         # 项目配置（uv 管理）
 ├── uv.lock              # 依赖锁定
 │
-├── docs/               # 📚 文档
+├── docs/               # 文档
 │   └── MODEL_COMPARISON.md    # 模型对比详解
 │
-├── cnn/               # 🔷 CNN 示例
+├── logistic_regression/  # 逻辑回归（二分类）
+│   ├── model.py        # LogisticRegressionModel
+│   ├── train.py        # 学习小时数 → 及格概率
+│   └── README.md
+│
+├── diabetes_nn/        # 多层神经网络
+│   ├── model.py        # 8→6→4→1 维度递减
+│   ├── train.py        # 糖尿病预测
+│   └── README.md
+│
+├── mnist_classifier/   # Softmax 多分类
+│   ├── model.py        # 784→512→256→128→64→10
+│   ├── train.py        # MNIST 手写数字识别
+│   └── README.md
+│
+├── cnn/               # CNN 示例
 │   ├── model.py        # CNN/LeNet-5 定义
 │   ├── train.py        # MNIST 训练
 │   └── README.md
 │
-├── rnn/               # 🔄 RNN/LSTM 示例
+├── rnn/               # RNN/LSTM 示例
 │   ├── model.py        # RNN/LSTM/GRU 实现
 │   ├── train.py        # 序列预测训练
 │   └── README.md
 │
-├── transformer/        # 🤖 Transformer 示例
+├── transformer/        # Transformer 示例
 │   ├── config.py
 │   ├── data.py
 │   ├── model.py        # GPT 风格 Transformer
@@ -48,17 +63,16 @@ dl-from-scratch/
 │   ├── ARCHITECTURE.md  # 架构详解
 │   └── README.md
 │
-├── cuda/              # ⚡ CUDA 编程示例
+├── cuda/              # CUDA 编程示例
 │   ├── tutorial.py     # 6 个基础示例
 │   └── README.md
 │
-├── lora/              # 🎯 LoRA 微调
+├── lora/              # LoRA 微调
 │   ├── model.py        # LoRA 层实现
 │   ├── train.py        # LLaMA 微调
-│   ├── README.md
-│   └── （依赖统一在根目录）
+│   └── README.md
 │
-└── mlops-example/     # 🛠️ MLOps
+└── mlops-example/     # MLOps
     ├── mlflow_tracking_example.py
     ├── docker-compose.yml
     └── README.md
@@ -81,6 +95,9 @@ uv sync
 
 | 任务 | 命令 |
 |------|------|
+| **逻辑回归** | `python logistic_regression/train.py` |
+| **糖尿病预测** | `python diabetes_nn/train.py` |
+| **MNIST 分类** | `python mnist_classifier/train.py` |
 | **CNN 训练** | `python cnn/train.py --model cnn --epochs 5` |
 | **RNN 训练** | `python rnn/train.py --model lstm --epochs 10` |
 | **文本生成** | `cd transformer && python main.py train` |
@@ -89,9 +106,46 @@ uv sync
 
 ---
 
-## 📚 子项目指南
+## 子项目指南
 
-### 🔷 CNN (卷积神经网络)
+### 逻辑回归（二分类）
+
+**核心思想**：线性层 + Sigmoid 激活 → 概率输出
+
+- 学习小时数 → 及格概率预测
+- BCELoss 二分类交叉熵
+
+```bash
+cd logistic_regression
+python train.py
+```
+
+### 多层神经网络（糖尿病预测）
+
+**核心思想**：逐层降维 + 非线性激活
+
+- 维度变换: 8 → 6 → 4 → 1
+- 特征抽象能力
+
+```bash
+cd diabetes_nn
+python train.py
+```
+
+### Softmax 多分类（MNIST）
+
+**核心思想**：Softmax + CrossEntropyLoss
+
+- 网络结构: 784 → 512 → 256 → 128 → 64 → 10
+- 10 分类手写数字识别
+- 准确率 97%+
+
+```bash
+cd mnist_classifier
+python train.py
+```
+
+### CNN (卷积神经网络)
 
 **核心思想**：局部感受野 + 权重共享
 
