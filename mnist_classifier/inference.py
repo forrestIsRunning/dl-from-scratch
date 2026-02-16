@@ -9,7 +9,7 @@ import os
 import io
 import base64
 import torch
-from PIL import Image, ImageOps
+from PIL import Image
 from torchvision import transforms
 from flask import Flask, request, jsonify, render_template_string
 from model import MNISTClassifier
@@ -69,8 +69,8 @@ def preprocess_image(image_data):
     # 转为灰度图
     image = image.convert('L')
 
-    # 反转颜色 (白底黑字 → 黑底白字, MNIST 格式)
-    image = ImageOps.invert(image)
+    # 注意: Web 画布已经是黑底白字，和 MNIST 格式一致，无需反转
+    # 如果输入是白底黑字（如扫描文档），则需要反转
 
     # 预处理
     tensor = transform(image).unsqueeze(0)  # 添加 batch 维度
@@ -415,9 +415,9 @@ if __name__ == '__main__':
 
     print(f"\n设备: {device}")
     print("\n服务启动中...")
-    print("  Web 界面: http://localhost:5000")
-    print("  API 接口: POST http://localhost:5000/api/predict")
+    print("  Web 界面: http://localhost:5001")
+    print("  API 接口: POST http://localhost:5001/api/predict")
     print("\n按 Ctrl+C 停止服务")
     print("-" * 60)
 
-    app.run(host='0.0.0.0', port=5000, debug=False)
+    app.run(host='0.0.0.0', port=5001, debug=False)
