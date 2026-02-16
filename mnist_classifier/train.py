@@ -155,6 +155,11 @@ def main():
     print(f"\n【最终结果】")
     print(f"  测试集准确率: {accuracies[-1]:.2f}%")
 
+    # 保存模型
+    model_path = os.path.join(os.path.dirname(__file__), 'mnist_model.pth')
+    torch.save(model.state_dict(), model_path)
+    print(f"  模型保存至: {model_path}")
+
     # 预测示例
     print(f"\n【预测示例】")
     model.eval()
